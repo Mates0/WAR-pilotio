@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import * as React from 'react';
+import Data from './data.json';
+import {useState} from 'react';
+import './style.css';
+export default function App() {
+    const [favouriteAirport,setfavouriteAirports] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="outer-box">
+        <h1>Oblíbená letiště</h1>
+        <h1>Všechny letiště</h1>
+        {
+          Data.map( data => {
+            return (
+                <div className="box">
+                  <div className="row1">
+                    <h2>{data.name}</h2>
+                    <h3>{data.municipality}</h3>
+                  </div>
+                  <div className="row2">
+                    <h3>{data.code}</h3>
+                    <h3>{data.gpscode}</h3>
+                  </div>
+                  <div>
+                    <button onClick={() => alert("LAT: " + data.lat + " LONG: " + data.long)}>Zobrazit souřadnice</button>
+                  </div>
+                  <img src={`${data.image}`}></img>
+                  <div>
+                    <button>Přidat do oblíbených</button>
+                  </div>
+                </div>
+            )
+          })
+        }
+      </div>
   );
 }
-
-export default App;
