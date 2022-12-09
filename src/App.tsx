@@ -3,6 +3,7 @@ import Data from './data.json';
 import {useState} from 'react';
 import './style.css';
 export default function App() {
+    const [favouriteAirport,setfavouriteAirports] = useState([])
   return (
       <div className="outer-box">
         <h1>Oblíbená letiště</h1>
